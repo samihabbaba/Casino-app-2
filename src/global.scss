@@ -1,22 +1,21 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
 
-/* Core CSS required for Ionic components to work properly */
 @import "~@ionic/angular/css/core.css";
+
+//DataTable
+@import "~@swimlane/ngx-datatable/index.css";
+@import "~@swimlane/ngx-datatable/themes/material.scss";
+@import "~@swimlane/ngx-datatable/assets/icons.css";
+
+// AutoComplete
+
+// @import "~@ng-select/ng-select/themes/default.theme.css";
+
 
 /* Basic CSS for apps built with Ionic */
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -24,3 +23,118 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+@font-face {
+  font-family: "SegoeUI";
+  font-style: normal;
+  font-weight: normal;
+  src: url("./assets/fonts/Segoe\ UI.ttf");
+}
+
+@font-face {
+  font-family: "SegoeUI-Bold";
+  font-style: normal;
+  font-weight: bold;
+  src: url("./assets/fonts/Segoe\ UI\ Bold.ttf");
+}
+
+@font-face {
+  font-family: "SegoeUI-BoldItalic";
+  font-style: italic;
+  font-weight: bold;
+  src: url("./assets/fonts/Segoe\ UI\ Bold\ Italic.ttf");
+}
+
+@font-face {
+  font-family: "SegoeUI-Italic";
+  font-style: italic;
+  font-weight: normal;
+  src: url("./assets/fonts/Segoe\ UI\ Italic.ttf");
+}
+
+* {
+  font-family: "SegoeUI";
+}
+
+.main-button {
+  --background: linear-gradient(
+    90deg,
+    rgba(102, 126, 234, 1) 0%,
+    rgba(100, 182, 255, 1) 100%
+  );
+  --box-shadow: none;
+  position: relative;
+  height: 50px;
+  margin-bottom: 15px;
+}
+
+.main-button::after {
+  content: " ";
+  position: absolute;
+  width: 80%;
+  right: 10%;
+  bottom: 0;
+  top: 10px;
+  height: 40px;
+  z-index: -1;
+  box-shadow: 0px 20px 20px -17px rgba(0, 111, 255, 1);
+}
+
+.machine-list {
+  .searchbar-input {
+    padding: 0 0 0 8px !important;
+  }
+  .searchbar-search-icon {
+    display: none !important;
+  }
+  ion-list {
+    height: calc(100vh - 280px);
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container ion-item {
+  --padding-start: 0;
+  --border-color: #dadada;
+}
+
+.form-container ion-item ion-label {
+  color: #a6a6a6;
+  font-weight: 500;
+}
+
+.form-container ion-item ion-icon {
+  margin-top: auto;
+  color: #c6cbd4;
+  font-size: 19px;
+}
+
+.form-container ion-button {
+  margin-top: 48px;
+}
+
+.title {
+  color: #434343;
+}
+
+.page-count {
+  display: none !important;
+}
+
+.datatable-row-center {
+  datatable-body-cell:last-child {
+    display: flex !important;
+    align-items: center !important;
+  }
+}
+
+#deleteBtn {
+  --ripple-color: #eb445a;
+}
