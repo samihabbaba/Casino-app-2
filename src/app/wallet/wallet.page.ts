@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { DataService } from '../services/data.service';
 
@@ -14,10 +14,17 @@ export class WalletPage implements OnInit {
   constructor(
     public authService: AuthService,
     private dataService: DataService,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private navCtrl: NavController
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (!localStorage.getItem('table')) {
+      this.navCtrl.navigateRoot('/table-selection', {
+        animationDirection: 'back',
+      });
+    }
+  }
 
   getData() {
     this.dataService
@@ -28,6 +35,11 @@ export class WalletPage implements OnInit {
   }
 
   ionViewWillEnter() {
+    if (!localStorage.getItem('table')) {
+      this.navCtrl.navigateRoot('/table-selection', {
+        animationDirection: 'back',
+      });
+    }
     this.getData();
     this.menuCtrl.close();
   }

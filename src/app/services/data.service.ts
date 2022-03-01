@@ -92,4 +92,30 @@ export class DataService {
       headers: this.httpOptions.headers,
     });
   }
+
+  // TABLE
+
+  getTables() {
+    return this.http.get<any>(`${environment.apiUrl}table`, {
+      headers: this.httpOptions.headers,
+    });
+  }
+
+  getLastDrop(tableId) {
+    return this.http.get<any>(`${environment.apiUrl}live/lastdrop/${tableId}`, {
+      headers: this.httpOptions.headers,
+    });
+  }
+
+  getFloat(tableId) {
+    return this.http.get<any>(`${environment.apiUrl}general/float/${tableId}`, {
+      headers: this.httpOptions.headers,
+    });
+  }
+
+  getCurrentTableTransaction(tableId) {
+    return this.http.get<any>(`${environment.apiUrl}live/current/${tableId}`, {
+      headers: this.httpOptions.headers,
+    });
+  }
 }

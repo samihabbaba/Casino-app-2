@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title class="title">Tab 1</ion-title>
+    <ion-title class="title">Table</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,5 +12,212 @@
     <ion-refresher-content refreshingSpinner="circles"></ion-refresher-content>
   </ion-refresher>
 
-  1st Tab
+  <div class="header">
+    <div class="header-title">
+      <span class="name">Username: </span>
+      <span class="value">{{authService.currentUser?.name}}</span>
+    </div>
+
+    <div class="header-title">
+      <span class="name">Table: </span>
+      <span class="value">{{tableDetails?.name}}</span>
+    </div>
+
+    <div class="header-title">
+      <span class="name">Wallet: </span>
+      <span class="value">{{authService.currentUser?.name}}</span>
+    </div>
+
+    <div class="header-title">
+      <span class="name">Currency: </span>
+      <span class="value">{{tableDetails?.code}}</span>
+    </div>
+
+    <div class="float-container">
+      <div class="header-title">
+        <span class="name">Float 100: </span>
+        <span class="value">{{tableFloat?.float100 | number:"1.2-2"}}</span>
+      </div>
+
+      <div class="header-title">
+        <span class="name">Float 500: </span>
+        <span class="value">{{tableFloat?.float500 | number:"1.2-2"}}</span>
+      </div>
+
+      <div class="header-title">
+        <span class="name">Float 1000: </span>
+        <span class="value">{{tableFloat?.float1000 | number:"1.2-2"}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="seperator">
+    <hr />
+  </div>
+
+  <div class="table">
+    <div style="display: flex">
+      <ion-button id="add-new" mode="md" shape="round" class="submit-btn"
+        >Add New</ion-button
+      >
+    </div>
+
+    <ngx-datatable
+      class="material"
+      [rows]="tableData"
+      [columnMode]="ColumnMode.force"
+      [headerHeight]="50"
+      [footerHeight]="60"
+      [rowHeight]="50"
+      [limit]="10"
+      [selected]="selected"
+      [selectAllRowsOnPage]="false"
+      (activate)="onActivate($event)"
+      (select)="onSelect($event)"
+    >
+      <ngx-datatable-column name="Customer"
+        ><ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.name}}
+        </ng-template></ngx-datatable-column
+      >
+      <ngx-datatable-column name="Cash In">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.cashIn | number:'1.2-2'}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Cashout 100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.cashOut100 | number:'1.2-2'}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Cashout 500">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.cashOut500 | number:'1.2-2'}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Cashout 1000">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.cashOut1000 | number:'1.2-2'}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column class="actionButtons" name="Action">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <ion-button id="add-credit" fill="clear" mode="md">
+            <ion-icon
+              color="primary"
+              slot="icon-only"
+              name="add-circle"
+            ></ion-icon>
+          </ion-button>
+          <ion-button id="checkout" fill="clear" mode="md">
+            <ion-icon
+              color="primary"
+              slot="icon-only"
+              name="log-out"
+            ></ion-icon>
+          </ion-button>
+          <ion-button id="gift" fill="clear" mode="md">
+            <ion-icon color="primary" slot="icon-only" name="gift"></ion-icon>
+          </ion-button>
+          <ion-button id="av-bet" fill="clear" mode="md">
+            <ion-icon color="primary" slot="icon-only" name="cash"></ion-icon>
+          </ion-button>
+          <ion-button id="cancel" fill="clear" mode="md">
+            <ion-icon
+              color="primary"
+              slot="icon-only"
+              name="alert-circle-outline"
+            ></ion-icon>
+          </ion-button> </ng-template
+      ></ngx-datatable-column>
+    </ngx-datatable>
+  </div>
 </ion-content>
+
+<ion-modal trigger="add-new" #addNew>
+  <ng-template>
+    <ion-header translucent>
+      <ion-toolbar>
+        <ion-title>Add New</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="addNew.dismiss()">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>Modal Content</ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal trigger="add-credit" #addCredit>
+  <ng-template>
+    <ion-header translucent>
+      <ion-toolbar>
+        <ion-title>Add Credit</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="addCredit.dismiss()">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>Modal Content</ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal trigger="checkout" #checkout>
+  <ng-template>
+    <ion-header translucent>
+      <ion-toolbar>
+        <ion-title>Checkout</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="checkout.dismiss()">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>Modal Content</ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal trigger="gift" #gift>
+  <ng-template>
+    <ion-header translucent>
+      <ion-toolbar>
+        <ion-title>Gift</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="gift.dismiss()">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>Modal Content</ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal trigger="av-bet" #avBet>
+  <ng-template>
+    <ion-header translucent>
+      <ion-toolbar>
+        <ion-title>Avarage Bet</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="avBet.dismiss()">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>Modal Content</ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-modal trigger="cancel" #cancel>
+  <ng-template>
+    <ion-header translucent>
+      <ion-toolbar>
+        <ion-title>Cancel</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="cancel.dismiss()">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>Modal Content</ion-content>
+  </ng-template>
+</ion-modal>

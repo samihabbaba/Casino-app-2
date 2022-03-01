@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
     FormsModule,
     ReactiveFormsModule,
     Tab1PageRoutingModule,
+    NgxDatatableModule,
   ],
   declarations: [Tab1Page],
 })

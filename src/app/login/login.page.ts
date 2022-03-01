@@ -21,6 +21,9 @@ export class LoginPage implements OnInit {
   ) {}
 
   ionViewWillEnter() {
+    if (localStorage.getItem('table')) {
+      localStorage.removeItem('table');
+    }
     this.menuCtrl.enable(false);
   }
 
@@ -30,14 +33,11 @@ export class LoginPage implements OnInit {
     const obj = { username: this.username, password: this.password };
     this.authService.login(obj).subscribe(
       (resp) => {
-        if (
-          this.authService.currentUser?.role !== 'Chief' &&
-          this.authService.currentUser?.role !== 'Attendant'
-        ) {
+        if (this.authService.currentUser?.role !== 'Inspector') {
           this.authService.logOut();
           this.toast.dark('Check your credentials');
         } else {
-          this.navCtrl.navigateRoot('/', {
+          this.navCtrl.navigateRoot('/table-selection', {
             animationDirection: 'forward',
           });
         }

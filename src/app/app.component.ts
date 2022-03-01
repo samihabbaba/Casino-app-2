@@ -16,4 +16,11 @@ export class AppComponent {
   logout() {
     this.authService.logOut();
   }
+
+  chooseTable() {
+    localStorage.removeItem('table');
+    this.navCtrl.navigateRoot('table-selection', {
+      animationDirection: 'back',
+    });
+  }
 }

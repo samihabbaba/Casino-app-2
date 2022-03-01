@@ -1,0 +1,45 @@
+.seperator {
+  hr {
+    margin-top: 0;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: #e2e2e2;
+  }
+}
+
+.header {
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  overflow: auto;
+}
+
+.table {
+  padding: 16px;
+}
+
+.header-title {
+  padding: 4px 8px;
+  .name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #222428;
+  }
+  .value {
+    color: #a1a1a1;
+  }
+}
+
+.float-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+}
+
+.submit-btn {
+  margin: 0 0 8px auto;
+}
+.actionButtons {
+  overflow: auto;
+}

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Select a table</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let table of tables">
+        <ion-card (click)="handleTableClick(table)">
+          <ion-card-header>
+            <ion-card-subtitle>{{table.game}}</ion-card-subtitle>
+            <ion-card-title
+              >{{table.name}}
+              <ion-icon
+                [color]="table.isActive ? 'success' : 'danger'"
+                name="ellipse"
+              ></ion-icon>
+            </ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            {{table.minAmount | number:"1.2-2"}} {{table.code}} -
+            {{table.maxAmount | number:"1.2-2"}} {{table.code}}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
